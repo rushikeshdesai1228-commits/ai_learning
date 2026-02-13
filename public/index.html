@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI App</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+
+<div class="page-wrapper">
+  
+  <div id="manualControls">
+  <div class="container">
+
+<form id="myForm" action="/sub" method="post">
+    <input type="text" name="title" id="title" placeholder="Enter prompt">
+    <div id="levelSelector">
+  <button type="button" onclick="setLevel('Beginner')">Beginner</button>
+  <button type="button" onclick="setLevel('Intermediate')">Intermediate</button>
+  <button type="button" onclick="setLevel('Advanced')">Advanced</button>
+</div>
+
+    <button type="submit" >Submit</button>
+  </div>
+  </form>
+  </div>
+    
+
+
+  <p id="info"></p>
+  <p id="explain"></p>
+  <p id="output"></p>
+<div id="result"></div>
+<div id="deepExplainSection"></div>
+<div id="nextTopicsSection"></div>
+
+ <button id="submit" onclick="showresult()" style="display: flex;"> SUBMIT</button>
+</div>
+  <script src="/javascript/script.js"></script>
+
+</body>
+</html>

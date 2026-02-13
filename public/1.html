@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnHub</title>
+
+<style>
+:root {
+  --green: #1B7A4A;
+  --green-light: #d1ead9;
+  --white: #FFFFFF;
+  --ink-2: #222222;
+  --muted: #555555;
+  --border-light: #ECEAEA;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+  --r-lg: 20px;
+  --font: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: #f8faf8;
+}
+
+/* Navbar */
+.navbar {
+  background: var(--white);
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--green);
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 70px 20px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  color: var(--ink-2);
+}
+
+.hero p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/* Learning Section */
+.category-section {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.category-section h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: var(--green);
+  position: relative;
+}
+
+.category-section h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: var(--green);
+  display: block;
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+.alt-bg {
+  background: var(--green-xlight);
+  padding: 60px 20px;
+  border-radius: var(--r-lg);
+}
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.learning-card {
+  background: var(--white);
+  padding: 25px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--border-light);
+}
+
+.learning-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--green-light);
+}
+
+.learning-card h3 {
+  margin-bottom: 10px;
+  color: var(--ink-2);
+}
+
+.learning-card p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <div class="logo">LearnHub</div>
+  <div>Structured AI Learning</div>
+</div>
+
+<section class="hero">
+  <h1>Master Computer Science The Right Way</h1>
+  <p>Structured lessons. Adaptive quizzes. Smart progression.</p>
+</section>
+
+<!-- Programming Foundations -->
+<section class="category-section">
+  <h2>Programming Foundations</h2>
+  <div class="learning-grid">
+
+    <div class="learning-card" onclick="goToLearn('Object Oriented Programming')">
+      <h3>Object Oriented Programming</h3>
+      <p>Inheritance, polymorphism, encapsulation and abstraction.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Data Structures')">
+      <h3>Data Structures</h3>
+      <p>Arrays, linked lists, stacks, queues and trees.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Algorithms Basics')">
+      <h3>Algorithms</h3>
+      <p>Sorting, searching and time complexity.</p>
+    </div>
+
+  </div>
+</section>
+<!-- General Knowledge & Life Skills -->
+<section class="category-section alt-bg">
+  <h2>General Knowledge & Life Skills</h2>
+  <div class="learning-grid">
+
+    <div class="learning-card" onclick="goToLearn('Critical Thinking')">
+      <h3>Critical Thinking</h3>
+      <p>Learn how to analyze, question and reason effectively.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Personal Finance Basics')">
+      <h3>Personal Finance</h3>
+      <p>Budgeting, saving, investing and financial planning.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Communication Skills')">
+      <h3>Communication Skills</h3>
+      <p>Public speaking, clarity and persuasion techniques.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Psychology Fundamentals')">
+      <h3>Psychology Basics</h3>
+      <p>Understanding behavior, cognition and human decision making.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Productivity Systems')">
+      <h3>Productivity</h3>
+      <p>Time management and effective work habits.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('History of Civilizations')">
+      <h3>World History</h3>
+      <p>Major civilizations and their impact on modern society.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- Computer Science Core -->
+<section class="category-section alt-bg">
+  <h2>Computer Science Core</h2>
+  <div class="learning-grid">
+
+    <div class="learning-card" onclick="goToLearn('Operating Systems')">
+      <h3>Operating Systems</h3>
+      <p>Processes, memory management and scheduling.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Database Systems')">
+      <h3>Database Systems</h3>
+      <p>SQL, indexing and normalization.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Computer Networks')">
+      <h3>Computer Networks</h3>
+      <p>TCP/IP, HTTP and system communication.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Web Development -->
+<section class="category-section">
+  <h2>Web Development</h2>
+  <div class="learning-grid">
+
+    <div class="learning-card" onclick="goToLearn('HTML and CSS')">
+      <h3>HTML & CSS</h3>
+      <p>Build beautiful responsive layouts.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('JavaScript Fundamentals')">
+      <h3>JavaScript</h3>
+      <p>DOM manipulation and async programming.</p>
+    </div>
+
+    <div class="learning-card" onclick="goToLearn('Node.js Backend')">
+      <h3>Node.js Backend</h3>
+      <p>APIs, authentication and server logic.</p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function goToLearn(topic) {
+  localStorage.setItem("selectedTopic", topic);
+  window.location.href = "/learn.html";
+}
+</script>
+
+</body>
+</html>

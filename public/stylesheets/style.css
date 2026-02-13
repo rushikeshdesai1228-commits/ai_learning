@@ -1,0 +1,430 @@
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+  --green: #1B7A4A;
+  --green-hover: #165f3a;
+  --green-light: #d1ead9;
+  --green-xlight: #eaf4ee;
+  --white: #ffffff;
+  --offwhite: #f8f8fa;
+  --ink: #111111;
+  --muted: #555555;
+  --muted-light: #888888;
+  --border: #e0dede;
+  --border-light: #eceaea;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.05);
+  --shadow-md: 0 10px 30px rgba(0,0,0,.08);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,.12);
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  background: var(--green-xlight);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* Hide empty containers */
+#info:empty,
+#output:empty,
+#result:empty {
+  display: none;
+}
+
+/* =========================
+   PAGE WRAPPER
+========================= */
+.page-wrapper {
+  width: 100%;
+  max-width: 680px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* =========================
+   INPUT CARD
+========================= */
+#manualControls {
+  background: var(--white);
+  padding: 40px;
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+#myForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Topic Input */
+#title {
+  width: 100%;
+  padding: 18px 22px;
+  border-radius: var(--r-md);
+  border: 2px solid var(--border);
+  background: var(--offwhite);
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+#title:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px var(--green-light);
+}
+
+#title::placeholder {
+  color: var(--muted-light);
+}
+
+/* =========================
+   LEVEL SELECTOR
+========================= */
+#levelSelector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+#levelSelector button {
+  padding: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#levelSelector button.selected {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+}
+
+/* =========================
+   MAIN BUTTON
+========================= */
+button,
+#submit {
+  padding: 16px;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r-md);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 12px rgba(27,122,74,0.25);
+}
+
+button:hover,
+#submit:hover {
+  background: var(--green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(27,122,74,0.35);
+}
+
+/* =========================
+   LESSON CARD
+========================= */
+.sub {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.sub h2 {
+  font-size: 20px;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.sub p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* =========================
+   QUIZ SECTION (FIXED)
+========================= */
+#output {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+}
+
+#output h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+#output div {
+  margin-bottom: 20px;
+}
+
+#output label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+  accent-color: var(--green);
+}
+
+/* =========================
+   RESULT SECTION
+========================= */
+#result {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  border-left: 5px solid var(--green);
+}
+
+#result h2 {
+  margin-bottom: 12px;
+  color: var(--green);
+}
+
+#result p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+@media (max-width: 600px) {
+
+  .page-wrapper {
+    margin: 30px auto;
+    gap: 25px;
+  }
+
+  #manualControls {
+    padding: 28px 20px;
+  }
+
+  #title {
+    font-size: 1.2rem;
+    padding: 18px;
+  }
+
+  #levelSelector {
+    grid-template-columns: 1fr;
+  }
+
+  #levelSelector button {
+    height: 56px;
+    font-size: 16px;
+  }
+
+  button,
+  #submit {
+    height: 60px;
+    font-size: 17px;
+  }
+
+  .sub p,
+  #output label {
+    font-size: 17px;
+    line-height: 1.9;
+  }
+
+  #output h3 {
+    font-size: 18px;
+  }
+}
+
+/* =========================
+   LARGE DESKTOP BALANCE
+========================= */
+@media (min-width: 1200px) {
+
+  .page-wrapper {
+    max-width: 750px;
+  }
+
+  #manualControls {
+    padding: 35px;
+  }
+
+  #title {
+    font-size: 17px;
+  }
+
+  .sub p {
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   RESULT ANALYSIS CARD
+========================= */
+
+.result-card {
+  background: var(--white);
+  padding: 28px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  border-left: 5px solid var(--green);
+}
+
+.result-card h2 {
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.result-card h3 {
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.result-card p {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+/* =========================
+   DEEP EXPLANATION SECTION
+========================= */
+
+#deepExplainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#deepExplainSection h3 {
+  font-size: 18px;
+  color: var(--green);
+  margin-bottom: 5px;
+}
+
+.deep-card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--green-light);
+}
+
+.deep-card h4 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.deep-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* =========================
+   NEXT TOPIC SECTION
+========================= */
+
+#nextTopicsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#nextTopicsSection h3 {
+  font-size: 18px;
+  color: var(--green);
+  margin-bottom: 5px;
+}
+
+.next-topic-card {
+  background: var(--white);
+  padding: 22px;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  transition: 0.2s ease;
+}
+
+.next-topic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.next-topic-card h4 {
+  margin-bottom: 8px;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.next-topic-card p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.next-topic-card button {
+  width: auto;
+  padding: 10px 18px;
+  font-size: 14px;
+  border-radius: var(--r-pill);
+}
+@media (max-width: 600px) {
+
+  .result-card,
+  .deep-card,
+  .next-topic-card {
+    padding: 18px;
+  }
+
+  .result-card h2 {
+    font-size: 18px;
+  }
+
+  .deep-card p,
+  .next-topic-card p {
+    font-size: 16px;
+  }
+
+  .next-topic-card button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+}
