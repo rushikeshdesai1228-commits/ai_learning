@@ -320,4 +320,4 @@ function showQuiz() {
 //     document.getElementById("myForm").dispatchEvent(new Event("submit"));
 //     localStorage.removeItem("selectedTopic");
 //   }
-});
+// });
