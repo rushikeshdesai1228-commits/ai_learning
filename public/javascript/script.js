@@ -311,13 +311,13 @@ function showQuiz() {
   document.getElementById("submit").style.display = "block";
 }
 
-window.addEventListener("load", function () {
-  const topic = localStorage.getItem("selectedTopic");
+// window.addEventListener("load", function () {
+//   const topic = localStorage.getItem("selectedTopic");
 
-   document.getElementById("manualControls").style.display = "none";
-  if (topic) {
-    document.getElementById("title").value = topic;
-    document.getElementById("myForm").dispatchEvent(new Event("submit"));
-    localStorage.removeItem("selectedTopic");
-  }
+//    document.getElementById("manualControls").style.display = "none";
+//   if (topic) {
+//     document.getElementById("title").value = topic;
+//     document.getElementById("myForm").dispatchEvent(new Event("submit"));
+//     localStorage.removeItem("selectedTopic");
+//   }
 });

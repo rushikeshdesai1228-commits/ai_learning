@@ -11,7 +11,7 @@ require('dotenv').config();
 
 
 const client = new Cerebras({
- apiKey: process.env.CEREBRAS_API_KEY,
+ apiKey: "process.env.CEREBRAS_API_KEY",
 });
 
 app.get('/',function (req,res){
