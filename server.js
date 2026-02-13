@@ -122,7 +122,7 @@ try {
 
   const response = await client.chat.completions.create({
     messages: [{ role: 'user', content: prompt }],
-    model: 'llama-3.3-70b',
+    model: 'gpt-oss-120b',
   });
 
 
@@ -185,7 +185,7 @@ app.post("/reinforce", async (req, res) => {
   try {
     const response = await client.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama-3.3-70b',
+      model: 'gpt-oss-120b',
     });
 
     res.json({ text: response.choices[0].message.content });
@@ -235,7 +235,7 @@ Return only raw JSON.
 
     const response = await client.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama-3.3-70b',
+      model: 'gpt-oss-120b',
     });
 
     const rawText = response.choices[0].message.content;
@@ -301,7 +301,7 @@ Return only raw JSON.
 
     const response = await client.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama-3.3-70b',
+      model: 'gpt-oss-120b',
     });
 
     const rawText = response.choices[0].message.content;

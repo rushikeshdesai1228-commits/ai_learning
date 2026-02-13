@@ -3,9 +3,15 @@
 <head>
   <title>AI App</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 
+<div class="hero">
+  <h1 class="main-title">AI Smart Learning</h1>
+<p class="subtitle">Learn any topic step-by-step with adaptive quizzes</p>
+</div>
 
 <div class="page-wrapper">
   
@@ -30,6 +36,30 @@
   <p id="info"></p>
   <p id="explain"></p>
   <p id="output"></p>
+  <div id="result"></div>
+
+<div id="analyticsDashboard" class="analytics-dashboard">
+
+  <h2>Learning Analytics</h2>
+
+  <div class="dashboard-grid">
+
+    <div class="chart-box">
+      <canvas id="accuracyChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+      <canvas id="timeChart"></canvas>
+    </div>
+
+    <div class="chart-box full-width">
+      <canvas id="subtopicChart"></canvas>
+    </div>
+
+  </div>
+
+</div>
+
 <div id="result"></div>
 <div id="deepExplainSection"></div>
 <div id="nextTopicsSection"></div>

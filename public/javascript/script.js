@@ -60,11 +60,16 @@ currentSubIndex = 0;
     document.getElementById("output").innerHTML = "";
 
   
-
-
+document.getElementById("output").innerHTML = "";
+document.getElementById("result").innerHTML = "";
+document.getElementById("deepExplainSection").innerHTML = "";
+document.getElementById("nextTopicsSection").innerHTML = "";
+  document.getElementById("analyticsDashboard").style.display = "none";
 renderSubtopic();
 
-
+document.getElementById("explain").scrollIntoView({
+  behavior: "smooth"
+});
 
 
 
@@ -98,6 +103,8 @@ function checker(selected, correct, subtopic) {
 // 🔥 Show Result
 function showresult() {
 
+  document.getElementById("analyticsDashboard").style.display = "block";
+
   const total = performanceData.length;
   if (total === 0) return;
 
@@ -125,17 +132,20 @@ function showresult() {
     else if (percent < 60) gaps.push(topic);
   }
 
-  document.getElementById("result").innerHTML = `
-    <h2>Learning Profile Analysis</h2>
-    <p>Score: ${correct}/${total}</p>
-    <p>Accuracy: ${accuracy.toFixed(2)}%</p>
-    <p>Average Response Time: ${avgTime.toFixed(2)} seconds</p>
-    <hr>
-    <h3>Strength Areas:</h3>
-    <p>${strengths.length ? strengths.join(", ") : "None identified"}</p>
-    <h3>Learning Gaps:</h3>
-    <p>${gaps.length ? gaps.join(", ") : "No major gaps"}</p>
-  `;
+  // document.getElementById("result").innerHTML = `
+  //   <h2>Learning Profile Analysis</h2>
+  //   <p>Score: ${correct}/${total}</p>
+  //   <p>Accuracy: ${accuracy.toFixed(2)}%</p>
+  //   <p>Average Response Time: ${avgTime.toFixed(2)} seconds</p>
+  //   <hr>
+  //   <h3>Strength Areas:</h3>
+  //   <p>${strengths.length ? strengths.join(", ") : "None identified"}</p>
+  //   <h3>Learning Gaps:</h3>
+  //   <p>${gaps.length ? gaps.join(", ") : "No major gaps"}</p>
+  // `;
+
+  renderCharts(accuracy, avgTime, topicStats);
+
 
   if (gaps.length > 0) {
     loadDeepExplanation(gaps);
@@ -321,3 +331,122 @@ function showQuiz() {
 //     localStorage.removeItem("selectedTopic");
 //   }
 // });
+
+function renderCharts(accuracy, avgTime, topicStats) {
+
+  // 🔥 Accuracy Doughnut Chart
+  new Chart(document.getElementById("accuracyChart"), {
+    type: "doughnut",
+    data: {
+      labels: ["Correct", "Incorrect"],
+      datasets: [{
+        data: [accuracy, 100 - accuracy],
+        backgroundColor: ["#4CAF50", "#F44336"]
+      }]
+    },
+    options: {
+       maintainAspectRatio: true,
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: "Accuracy Overview"
+        }
+      }
+    }
+  });
+
+
+  // 🔥 Average Response Time Bar
+  new Chart(document.getElementById("timeChart"), {
+    type: "bar",
+    data: {
+      labels: ["Average Time (seconds)"],
+      datasets: [{
+        label: "Time",
+        data: [avgTime],
+        backgroundColor: "#2196F3"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  // 🔥 Subtopic Performance Chart
+  const labels = [];
+  const performance = [];
+
+  for (let topic in topicStats) {
+    labels.push(topic);
+    let percent = (topicStats[topic].correct / topicStats[topic].total) * 100;
+    performance.push(percent);
+  }
+
+  new Chart(document.getElementById("subtopicChart"), {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Subtopic Accuracy %",
+        data: performance,
+        backgroundColor: "#FF9800"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+
+}
+
+async function showAdaptiveOption(accuracy) {
+
+  const response = await fetch("/adaptive-suggestion", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      accuracy: accuracy,
+      currentLevel: selectedLevel
+    })
+  });
+
+  const data = await response.json();
+
+  if (!data.changed) return;
+
+  const resultDiv = document.getElementById("result");
+
+  resultDiv.innerHTML += `
+    <div class="adaptive-box">
+      <h3>🎯 Adaptive Recommendation</h3>
+      <p>Your performance suggests moving to 
+      <strong>${data.suggestedLevel}</strong> level.</p>
+      <button onclick="startAdaptive('${data.suggestedLevel}')">
+        Continue at ${data.suggestedLevel}
+      </button>
+    </div>
+  `;
+}
+
+
+function startAdaptive(level) {
+
+  selectedLevel = level;
+
+  document.getElementById("title").value =
+    document.getElementById("title").value;
+
+  document.getElementById("myForm")
+    .dispatchEvent(new Event("submit"));
+}
